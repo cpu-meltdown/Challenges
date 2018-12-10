@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Solution {
 
-    private static List<FileSizePair> files = new ArrayList<>();
+    private static List<File> files = new ArrayList<>();
 
     /**
      * This method takes in a directory path and fills the files list by scanning the directory and all of its
@@ -25,8 +25,7 @@ public class Solution {
         if ( fList != null )
             for ( File file : fList ) {
                 if ( file.isFile() ) {
-                    FileSizePair fileSize = new FileSizePair( file.getAbsolutePath(), file.length() );
-                    files.add( fileSize );
+                    files.add( file );
                 } else if ( file.isDirectory() ) {
                     fillListOfFiles( file.getAbsolutePath() );
                 }
@@ -45,11 +44,11 @@ public class Solution {
         fillListOfFiles( args[0] );
 
         // sort the files based on size
-        files.sort( Comparator.comparing( a -> a.getFileSize() ) );
+        files.sort( Comparator.comparing( f -> f.length() ) );
 
         // size is in bytes
-        for ( FileSizePair file : files ) {
-            System.out.println( file );
+        for ( File file : files ) {
+            System.out.printf( "%s %s %s \n", file.getAbsolutePath(), file.getName(), file.length() );
         }
     }
 }
