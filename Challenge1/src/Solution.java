@@ -17,8 +17,8 @@ public class Solution {
      * @param args
      */
     public static void main( String[] args ) {
-        for ( int i = 0; i < words.length; i++ ) {
-            for ( int j = i + 1; j < words.length - 1; j++ ) {
+        for ( int i = 0; i < words.length - 1; i++ ) {
+            for ( int j = i + 1; j < words.length; j++ ) {
                 if ( areAnagrams( words[i], words[j] ) ) {
                     System.out.printf( "%s %s \n", words[i], words[j] );
                 }
