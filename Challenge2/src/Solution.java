@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -30,36 +31,12 @@ public class Solution {
      * @param args
      */
     public static void main( String[] args ) {
-        fillListOfFiles( "/Users/nbaalba/Documents/workspace/" );
-        System.out.println( files );
-    }
+        fillListOfFiles( args[0] );
 
-    private static class FileSizePair {
-        private String filePath;
+        files.sort( Comparator.comparing( a -> a.getFileSize() ) );
 
-        private long fileSize;
-
-        public FileSizePair( String filePath, long fileSize ) {
-            this.filePath = filePath;
-            this.fileSize = fileSize;
-        }
-
-        public long getFileSize() {
-            return fileSize;
-        }
-
-        public String getFilePath() {
-            return filePath;
-        }
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see java.lang.Object#toString()
-         */
-        @Override
-        public String toString() {
-            return this.filePath + " " + this.fileSize;
+        for ( FileSizePair file : files ) {
+            System.out.println( file );
         }
     }
 }
